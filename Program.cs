@@ -1,4 +1,23 @@
+using ApiProducts.Data;
+using DotNetEnv;
+using Microsoft.EntityFrameworkCore;
+
+Env.Load(); 
+
+var host = Environment.GetEnvironmentVariable("DB_HOST");
+var databaseName = Environment.GetEnvironmentVariable("DB_DATABASE");
+var port = Environment.GetEnvironmentVariable("DB_PORT");
+var userName = Environment.GetEnvironmentVariable("DB_USERNAME");
+var password = Environment.GetEnvironmentVariable("DB_PASSWORD");
+
+var connectionString = $"Host={host};Port={port};Database={databaseName};Username={userName};Password={password}";
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(connectionString));
 
 // Add services to the container.
 
