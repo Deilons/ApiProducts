@@ -8,7 +8,6 @@ namespace ApiProducts.Repositories;
 
 public interface IProductRepository
 {
-
     Task<IEnumerable<ProductDTO>> GetAll();
 
     Task<ProductDTO> GetbyId(int id);
